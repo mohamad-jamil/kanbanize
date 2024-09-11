@@ -1,7 +1,13 @@
-import ListGroup from "./components/ListGroup";
+import Header from "./components/Header";
+import Card from "./components/Card";
 
 function App() {
-  return <ListGroup />
+  return (
+    <>
+      <Header />
+      <Card />
+    </>
+  );
 }
 
 export default App;

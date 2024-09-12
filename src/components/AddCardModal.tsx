@@ -90,7 +90,7 @@ function AddCardModal({
               <input
                 type="text"
                 className="form-control"
-                placeholder="Provide a summary of your card here."
+                placeholder="Summarise your card here."
                 onChange={handleTitleChange}
               />
             </div>
@@ -99,6 +99,7 @@ function AddCardModal({
               <textarea
                 className="form-control"
                 rows={3}
+                placeholder="Provide a description of your card here."
                 onChange={handleDescriptionChange}
               ></textarea>
             </div>

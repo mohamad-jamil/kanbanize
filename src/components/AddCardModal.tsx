@@ -22,13 +22,13 @@ function AddCardModal({
 }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  let nextID = (cards.length + 1).toString().padStart(4, "0");
 
   const handleCreateCard = () => {
     console.log(
       `Saving card with title "${title}" and description "${description}".`
     );
 
-    let nextID = (cards.length + 1).toString().padStart(4, "0");
     setCards([
       ...cards,
       {
@@ -81,7 +81,7 @@ function AddCardModal({
               <input
                 type="text"
                 className="form-control"
-                placeholder="PROJ-104" //TODO: change this to dynamically allocate a card ID
+                placeholder={`ID-${nextID}`}
                 disabled
               />
             </div>

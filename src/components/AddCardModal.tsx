@@ -22,35 +22,37 @@ function AddCardModal({
 }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
   let nextID = (cards.length + 1).toString().padStart(4, "0");
 
   const handleCreateCard = () => {
-    console.log(
-      `Saving card with title "${title}" and description "${description}".`
-    );
+    if (title != "") {
+      setShowEmptyTitleError(false);
 
-    setCards([
-      ...cards,
-      {
-        title: title,
-        text: description,
-        header: `ID-${nextID}`,
-      },
-    ]);
+      setCards([
+        ...cards,
+        {
+          title: title,
+          text: description,
+          header: `ID-${nextID}`,
+        },
+      ]);
 
-    handleCloseModal();
+      handleCloseModal();
+    } else {
+      setShowEmptyTitleError(true);
+    }
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
-    console.log(e.target.value);
+    setShowEmptyTitleError(e.target.value == "");
   };
 
   const handleDescriptionChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setDescription(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
@@ -104,7 +106,7 @@ function AddCardModal({
               ></textarea>
             </div>
           </div>
-          <div className="modal-footer">
+          <div className="modal-footer d-flex justify-content-between">
             <button
               type="button"
               className="btn btn-primary"
@@ -112,6 +114,11 @@ function AddCardModal({
             >
               Save changes
             </button>
+            {showEmptyTitleError && (
+              <div className="alert alert-danger" role="alert">
+                <b>Error!</b> "Title" field must be populated.
+              </div>
+            )}
           </div>
         </div>
       </div>

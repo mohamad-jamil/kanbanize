@@ -1,11 +1,25 @@
 import { useState } from "react";
 
-interface Props {
-  handleCloseModal: () => void;
-  modalTitle: string;
+interface CardProps {
+  title: string;
+  text: string;
+  header: string;
+  buttonLink?: string;
 }
 
-function AddCardModal({ handleCloseModal, modalTitle }: Props) {
+interface Props {
+  cards: CardProps[];
+  handleCloseModal: () => void;
+  modalTitle: string;
+  setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
+}
+
+function AddCardModal({
+  cards,
+  handleCloseModal,
+  modalTitle,
+  setCards,
+}: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -13,6 +27,18 @@ function AddCardModal({ handleCloseModal, modalTitle }: Props) {
     console.log(
       `Saving card with title "${title}" and description "${description}".`
     );
+
+    let nextID = (cards.length + 1).toString().padStart(4, "0");
+    setCards([
+      ...cards,
+      {
+        title: title,
+        text: description,
+        header: `ID-${nextID}`,
+      },
+    ]);
+
+    handleCloseModal();
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +81,7 @@ function AddCardModal({ handleCloseModal, modalTitle }: Props) {
               <input
                 type="text"
                 className="form-control"
-                placeholder="PROJ-104"
+                placeholder="PROJ-104" //TODO: change this to dynamically allocate a card ID
                 disabled
               />
             </div>

@@ -7,25 +7,11 @@ interface CardProps {
   buttonLink?: string;
 }
 
-let cards: CardProps[] = [
-  {
-    title: "Fix bug",
-    text: "Work on a task to fix this bug.",
-    header: "PROJ-101",
-  },
-  {
-    title: "Add feature",
-    text: "Add this new feature to improve the app.",
-    header: "PROJ-102",
-  },
-  {
-    title: "Create pull request",
-    text: "Create a PR with your changes and add necessary approvers.",
-    header: "PROJ-103",
-  },
-];
+interface Props {
+  cards: CardProps[];
+}
 
-function Card() {
+function Card({ cards }: Props) {
   let link: string | undefined = undefined;
 
   return (

@@ -1,11 +1,23 @@
-import React from "react";
-import AddButton from "./AddButton";
+import React, { useState } from "react";
+import Button from "./Button";
+import AddCardModal from "./AddCardModal";
 
 function Header() {
   const headerText = "Kanbanize";
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+
   return (
     <div className="text-bg-primary p-3">
-      <h1>{headerText}</h1> <AddButton />
+      <h1>{headerText}</h1> <Button handleButtonClick={openModal}>+ Add</Button>{" "}
+      {showModal && (
+        <AddCardModal
+          handleCloseModal={closeModal}
+          modalTitle="Add Card Title"
+        ></AddCardModal>
+      )}
     </div>
   );
 }

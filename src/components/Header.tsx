@@ -15,7 +15,7 @@ function Header() {
       {showModal && (
         <AddCardModal
           handleCloseModal={closeModal}
-          modalTitle="Add Card Title"
+          modalTitle="Add New Card"
         ></AddCardModal>
       )}
     </div>

@@ -29,7 +29,7 @@ function Card() {
   let link: string | undefined = undefined;
 
   return (
-    <div className="container bg-secondary p-4">
+    <div className="container p-4">
       {cards.map((item, index) => (
         <div
           key={index}

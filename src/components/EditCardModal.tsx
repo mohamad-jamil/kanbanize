@@ -18,8 +18,8 @@ function EditCardModal({
   header,
   setCards,
 }: Props) {
-  const [newTitle, setNewTitle] = useState("");
-  const [newDescription, setNewDescription] = useState("");
+  const [newTitle, setNewTitle] = useState(title);
+  const [newDescription, setNewDescription] = useState(text);
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
 
   const handleCreateCard = () => {
@@ -79,6 +79,7 @@ function EditCardModal({
               <label className="form-label">Title</label>
               <input
                 type="text"
+                value={newTitle}
                 className="form-control"
                 placeholder="Summarise your card here."
                 onChange={handleTitleChange}
@@ -89,6 +90,7 @@ function EditCardModal({
               <textarea
                 className="form-control"
                 rows={3}
+                value={newDescription}
                 placeholder="Provide a description of your card here."
                 onChange={handleDescriptionChange}
               ></textarea>

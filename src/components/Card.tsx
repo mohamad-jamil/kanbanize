@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import EditCardModal from "./EditCardModal";
 
 interface Props {
   title: string;
@@ -8,6 +9,12 @@ interface Props {
 
 function Card({ title, text, header }: Props) {
   let link: string | undefined = undefined;
+
+  const [showModal, setShowModal] = useState(false);
+  const showEditModal = () => setShowModal(true);
+  const hideEditModal = () => setShowModal(false);
+
+  const setCards = () => console.log("Updating cards...");
 
   return (
     <div className="container p-4">
@@ -28,9 +35,18 @@ function Card({ title, text, header }: Props) {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{text}</p>
-          <a href={link} className="btn btn-primary">
+          <a href={link} className="btn btn-primary" onClick={showEditModal}>
             Edit
           </a>
+          {showModal && (
+            <EditCardModal
+              title={title}
+              text={text}
+              handleCloseModal={hideEditModal}
+              header={header}
+              setCards={setCards}
+            ></EditCardModal>
+          )}
         </div>
       </div>
     </div>

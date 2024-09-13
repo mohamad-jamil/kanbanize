@@ -64,7 +64,7 @@ function EditCardModal({
         <div className="modal-content">
           <div className="modal-header bg-white text-dark">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
-              Edit Card
+              {`Edit ${header}`}
             </h1>
             <button
               type="button"

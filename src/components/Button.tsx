@@ -11,7 +11,7 @@ function Button({ children, handleButtonClick }: Props) {
     <>
       <button
         type="button"
-        className="btn btn-outline-light position-absolute top-0 end-0 mt-3 me-3"
+        className="btn btn-outline-light btn-sm position-absolute end-0 me-2"
         onClick={handleButtonClick}
       >
         {children}

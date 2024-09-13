@@ -1,5 +1,7 @@
 import Header from "./components/Header";
 import Card from "./components/Card";
+import Column from "./components/Column";
+
 import { useState } from "react";
 
 interface CardProps {
@@ -10,12 +12,28 @@ interface CardProps {
 }
 
 function App() {
+  const [columns, setColumns] = useState([
+    "Backlog",
+    "To Do",
+    "In Progress",
+    "Done",
+  ]);
   const [cards, setCards] = useState<CardProps[]>([]);
 
   return (
     <>
       <Header cards={cards} setCards={setCards}></Header>
-      <Card cards={cards}></Card>
+      <div className="d-flex justify-content-between pt-4">
+        {columns.map((columnTitle, index) => (
+          <div>
+            <Column
+              key={index}
+              cards={cards}
+              columnTitle={columnTitle}
+            ></Column>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

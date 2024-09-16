@@ -23,16 +23,18 @@ function App() {
   return (
     <>
       <Header cards={cards} setCards={setCards}></Header>
-      <div className="d-flex justify-content-between pt-4">
-        {columns.map((columnTitle, index) => (
-          <div>
-            <Column
-              key={index}
-              cards={cards}
-              columnTitle={columnTitle}
-            ></Column>
-          </div>
-        ))}
+      <div className="container-fluid">
+        <div className="row">
+          {columns.map((columnTitle, index) => (
+            <div className="col">
+              <Column
+                key={index}
+                cards={cards}
+                columnTitle={columnTitle}
+              ></Column>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

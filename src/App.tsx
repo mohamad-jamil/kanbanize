@@ -1,5 +1,4 @@
 import Header from "./components/Header";
-import Card from "./components/Card";
 import Column from "./components/Column";
 
 import { useState } from "react";
@@ -24,9 +23,9 @@ function App() {
     <>
       <Header cards={cards} setCards={setCards}></Header>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row justify-content-center">
           {columns.map((columnTitle, index) => (
-            <div className="col">
+            <div className="col col-2 mx-5 mt-4 bg-light bg-gradient">
               <Column
                 key={index}
                 cards={cards}

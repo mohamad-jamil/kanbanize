@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "./Card";
 
 interface Props {
@@ -8,23 +7,22 @@ interface Props {
 
 function Column({ cards, columnTitle }: Props) {
   return (
-    <>
-      <h4>{columnTitle}</h4>
-      <ul className="list-group list-group-flush">
-        <div>
-          {cards.map((item, index) => (
-            <li className="list-group-item">
-              <Card
-                key={index}
-                title={item.title}
-                text={item.text}
-                header={item.header}
-              ></Card>
-            </li>
-          ))}
-        </div>
-      </ul>
-    </>
+    <div>
+      <h4 className="text-center">{columnTitle}</h4>
+      <hr />
+      <div>
+        {cards.map((item, index) => (
+          <li className="list-group-item">
+            <Card
+              key={index}
+              title={item.title}
+              text={item.text}
+              header={item.header}
+            ></Card>
+          </li>
+        ))}
+      </div>
+    </div>
   );
 }
 

@@ -17,7 +17,7 @@ function Card({ title, text, header }: Props) {
   const setCards = () => console.log("Updating cards...");
 
   return (
-    <div className="container p-4">
+    <div className="container d-flex justify-content-center">
       <div className="card text-bg-dark mb-3" style={{ width: "18rem" }}>
         <div className="card-header d-flex justify-content-between align-items-center">
           {header}

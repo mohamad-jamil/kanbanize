@@ -6,34 +6,18 @@ interface Props {
   text: string;
   handleCloseModal: () => void;
   header: string;
-  setCards: React.Dispatch<
-    React.SetStateAction<{ title: string; text: string; header: string }[]>
-  >;
 }
 
-function EditCardModal({
-  title,
-  text,
-  handleCloseModal,
-  header,
-  setCards,
-}: Props) {
+function EditCardModal({ title, text, handleCloseModal, header }: Props) {
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(text);
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
 
-  const handleCreateCard = () => {
+  const handleEditCard = () => {
     if (newTitle != "") {
       setShowEmptyTitleError(false);
 
-      //   setCards([
-      //     ...cards,
-      //     {
-      //       title: newTitle,
-      //       text: newDescription,
-      //       header: `ID-${nextID}`,
-      //     },
-      //   ]);
+      //TODO: LOGIC FOR UPDATING CARD HERE
 
       handleCloseModal();
     } else {
@@ -100,7 +84,7 @@ function EditCardModal({
             <button
               type="button"
               className="btn btn-primary"
-              onClick={handleCreateCard}
+              onClick={handleEditCard}
             >
               Save changes
             </button>

@@ -8,14 +8,10 @@ interface Props {
   status: string;
 }
 
-function Card({ title, text, header }: Props) {
-  let link: string | undefined = undefined;
-
+function Card({ title, text, header, status }: Props) {
   const [showModal, setShowModal] = useState(false);
   const showEditModal = () => setShowModal(true);
   const hideEditModal = () => setShowModal(false);
-
-  const setCards = () => console.log("Updating cards...");
 
   return (
     <div className="container d-flex justify-content-center">
@@ -36,7 +32,7 @@ function Card({ title, text, header }: Props) {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{text}</p>
-          <a href={link} className="btn btn-primary" onClick={showEditModal}>
+          <a className="btn btn-primary" onClick={showEditModal}>
             Edit
           </a>
           {showModal && (
@@ -45,7 +41,6 @@ function Card({ title, text, header }: Props) {
               text={text}
               handleCloseModal={hideEditModal}
               header={header}
-              setCards={setCards}
             ></EditCardModal>
           )}
         </div>

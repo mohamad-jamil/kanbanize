@@ -7,6 +7,7 @@ interface CardProps {
   title: string;
   text: string;
   header: string;
+  status: string;
   buttonLink?: string;
 }
 

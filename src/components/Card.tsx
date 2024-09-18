@@ -5,6 +5,7 @@ interface Props {
   title: string;
   text: string;
   header: string;
+  status: string;
 }
 
 function Card({ title, text, header }: Props) {

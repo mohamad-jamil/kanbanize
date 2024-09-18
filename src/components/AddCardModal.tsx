@@ -4,6 +4,7 @@ interface CardProps {
   title: string;
   text: string;
   header: string;
+  status: string;
   buttonLink?: string;
 }
 
@@ -35,6 +36,7 @@ function AddCardModal({
           title: title,
           text: description,
           header: `ID-${nextID}`,
+          status: "Backlog",
         },
       ]);
 

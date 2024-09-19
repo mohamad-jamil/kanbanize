@@ -28,8 +28,6 @@ function AddCardModal({
 
   const handleCreateCard = () => {
     if (title != "") {
-      setShowEmptyTitleError(false);
-
       setCards([
         ...cards,
         {
@@ -48,7 +46,7 @@ function AddCardModal({
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
-    setShowEmptyTitleError(e.target.value == "");
+    setShowEmptyTitleError(e.target.value.trim() == "");
   };
 
   const handleDescriptionChange = (

@@ -15,19 +15,15 @@ function EditCardModal({ title, text, handleCloseModal, header }: Props) {
 
   const handleEditCard = () => {
     if (newTitle != "") {
-      setShowEmptyTitleError(false);
-
       //TODO: LOGIC FOR UPDATING CARD HERE
 
       handleCloseModal();
-    } else {
-      setShowEmptyTitleError(true);
     }
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTitle(e.target.value);
-    setShowEmptyTitleError(e.target.value == "");
+    setShowEmptyTitleError(e.target.value.trim() == "");
   };
 
   const handleDescriptionChange = (

@@ -24,32 +24,6 @@ function Header({ cards, setCards }: Props) {
   return (
     <div className="text-bg-primary d-flex align-items-center">
       <h1 className="ps-2">{headerText}</h1>{" "}
-      <ul className="nav nav-underline ms-4">
-        <li className="nav-item">
-          <a
-            className="nav-link active text-light"
-            aria-current="page"
-            href="#"
-          >
-            Boards
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-light" href="#">
-            Link
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link text-light" href="#">
-            Link
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link  text-light" aria-disabled="true">
-            Disabled
-          </a>
-        </li>
-      </ul>{" "}
       <Button handleButtonClick={openModal}>+ Add Card</Button>{" "}
       {showModal && (
         <AddCardModal

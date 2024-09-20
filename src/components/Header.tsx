@@ -32,7 +32,6 @@ function Header({ cards, setCards }: Props) {
           cards={cards}
           setCards={setCards}
           handleCloseModal={closeModal}
-          modalTitle="Add New Card"
         ></AddCardModal>
       )}
     </div>

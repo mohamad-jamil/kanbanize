@@ -10,16 +10,10 @@ interface CardProps {
 interface Props {
   cards: CardProps[];
   handleCloseModal: () => void;
-  modalTitle: string;
   setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
 }
 
-function AddCardModal({
-  cards,
-  handleCloseModal,
-  modalTitle,
-  setCards,
-}: Props) {
+function AddCardModal({ cards, handleCloseModal, setCards }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
@@ -66,7 +60,7 @@ function AddCardModal({
         <div className="modal-content">
           <div className="modal-header bg-white text-dark">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
-              {modalTitle}
+              Add New Card
             </h1>
             <button
               type="button"

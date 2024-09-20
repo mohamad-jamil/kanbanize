@@ -1,8 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 interface Props {
-  children: string;
+  children: ReactNode;
   handleButtonClick: () => void;
 }
 

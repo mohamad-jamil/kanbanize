@@ -23,8 +23,10 @@ function Header({ cards, setCards }: Props) {
 
   return (
     <div className="text-bg-primary d-flex align-items-center">
-      <h1 className="ps-2">{headerText}</h1>{" "}
-      <Button handleButtonClick={openModal}>+ Add Card</Button>{" "}
+      <h1 className="p-2 ps-4">{headerText}</h1>
+      <div className="d-flex align-items-center position-absolute end-0 me-4">
+        <Button handleButtonClick={openModal}>+ Add Card</Button>
+      </div>
       {showModal && (
         <AddCardModal
           cards={cards}

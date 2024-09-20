@@ -4,11 +4,12 @@ import EditCardModal from "./EditCardModal";
 interface Props {
   title: string;
   text: string;
-  header: string;
+  id: string;
   status: string;
+  onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
-function Card({ title, text, header, status }: Props) {
+function Card({ title, text, id, status, onUpdateCard }: Props) {
   const [showModal, setShowModal] = useState(false);
   const showEditModal = () => setShowModal(true);
   const hideEditModal = () => setShowModal(false);
@@ -17,7 +18,7 @@ function Card({ title, text, header, status }: Props) {
     <div className="container d-flex justify-content-center">
       <div className="card text-bg-dark mb-3" style={{ width: "18rem" }}>
         <div className="card-header d-flex justify-content-between align-items-center">
-          {header}
+          {id}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -40,7 +41,8 @@ function Card({ title, text, header, status }: Props) {
               title={title}
               text={text}
               handleCloseModal={hideEditModal}
-              header={header}
+              id={id}
+              onUpdateCard={onUpdateCard}
             ></EditCardModal>
           )}
         </div>

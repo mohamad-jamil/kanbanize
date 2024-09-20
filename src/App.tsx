@@ -5,10 +5,9 @@ import { useState } from "react";
 
 interface CardProps {
   title: string;
-  text: string;
-  header: string;
+  description: string;
+  id: string;
   status: string;
-  buttonLink?: string;
 }
 
 function App() {
@@ -19,6 +18,26 @@ function App() {
     "Done",
   ]);
   const [cards, setCards] = useState<CardProps[]>([]);
+
+  const addCard = (title: string, description: string) => {
+    const nextID = (cards.length + 1).toString().padStart(4, "0");
+    const newCard = {
+      title: title,
+      description: description,
+      id: `ID-${nextID}`,
+      status: "Backlog",
+    };
+    setCards([...cards, newCard]);
+  };
+
+  const updateCard = (id: string, newTitle: string, newDescription: string) => {
+    const updatedCards = cards.map((card) =>
+      card.id === id
+        ? { ...card, title: newTitle, description: newDescription }
+        : card
+    );
+    setCards(updatedCards);
+  };
 
   return (
     <>
@@ -31,6 +50,7 @@ function App() {
                 key={index}
                 cards={cards}
                 columnTitle={columnTitle}
+                onUpdateCard={updateCard}
               ></Column>
             </div>
           ))}

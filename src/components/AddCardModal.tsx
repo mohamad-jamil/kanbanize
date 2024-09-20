@@ -2,10 +2,9 @@ import { useState } from "react";
 
 interface CardProps {
   title: string;
-  text: string;
-  header: string;
+  description: string;
+  id: string;
   status: string;
-  buttonLink?: string;
 }
 
 interface Props {
@@ -32,8 +31,8 @@ function AddCardModal({
         ...cards,
         {
           title: title,
-          text: description,
-          header: `ID-${nextID}`,
+          description: description,
+          id: `ID-${nextID}`,
           status: "Backlog",
         },
       ]);

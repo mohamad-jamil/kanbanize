@@ -1,11 +1,17 @@
 import Card from "./Card";
 
 interface Props {
-  cards: { title: string; text: string; header: string; status: string }[];
+  cards: {
+    title: string;
+    description: string;
+    id: string;
+    status: string;
+  }[];
   columnTitle: string;
+  onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
-function Column({ cards, columnTitle }: Props) {
+function Column({ cards, columnTitle, onUpdateCard }: Props) {
   return (
     <div>
       <h3 className="text-center">{columnTitle}</h3>
@@ -18,9 +24,10 @@ function Column({ cards, columnTitle }: Props) {
               <Card
                 key={index}
                 title={item.title}
-                text={item.text}
-                header={item.header}
+                text={item.description}
+                id={item.id}
                 status={item.status}
+                onUpdateCard={onUpdateCard}
               ></Card>
             </li>
           ))}

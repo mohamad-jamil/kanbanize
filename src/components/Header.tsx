@@ -4,10 +4,9 @@ import AddCardModal from "./AddCardModal";
 
 interface CardProps {
   title: string;
-  text: string;
-  header: string;
+  description: string;
+  id: string;
   status: string;
-  buttonLink?: string;
 }
 
 interface Props {

@@ -5,18 +5,24 @@ interface Props {
   title: string;
   text: string;
   handleCloseModal: () => void;
-  header: string;
+  id: string;
+  onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
-function EditCardModal({ title, text, handleCloseModal, header }: Props) {
+function EditCardModal({
+  title,
+  text,
+  handleCloseModal,
+  id,
+  onUpdateCard,
+}: Props) {
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(text);
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
 
   const handleEditCard = () => {
     if (newTitle != "") {
-      //TODO: LOGIC FOR UPDATING CARD HERE
-
+      onUpdateCard(id, newTitle, newDescription);
       handleCloseModal();
     }
   };
@@ -44,7 +50,7 @@ function EditCardModal({ title, text, handleCloseModal, header }: Props) {
         <div className="modal-content">
           <div className="modal-header bg-white text-dark">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
-              {`Edit ${header}`}
+              {`Edit ${id}`}
             </h1>
             <button
               type="button"

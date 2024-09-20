@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import Card from "./Card";
 
 interface Props {
@@ -31,6 +32,7 @@ function Column({ cards, columnTitle, onUpdateCard }: Props) {
             </li>
           ))}
       </div>
+      <Analytics />
     </div>
   );
 }

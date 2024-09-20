@@ -45,9 +45,11 @@ function App() {
       <div className="container-fluid">
         <div className="row justify-content-center">
           {columns.map((columnTitle, index) => (
-            <div className="col col-2 mx-5 mt-4 bg-light bg-gradient">
+            <div
+              key={index}
+              className="col col-2 mx-5 mt-4 bg-light bg-gradient"
+            >
               <Column
-                key={index}
                 cards={cards}
                 columnTitle={columnTitle}
                 onUpdateCard={updateCard}

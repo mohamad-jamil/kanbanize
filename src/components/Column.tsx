@@ -20,9 +20,8 @@ function Column({ cards, columnTitle, onUpdateCard }: Props) {
         {cards
           .filter((card) => card.status === columnTitle)
           .map((item, index) => (
-            <li className="list-group-item">
+            <li key={index} className="list-group-item">
               <Card
-                key={index}
                 title={item.title}
                 text={item.description}
                 id={item.id}

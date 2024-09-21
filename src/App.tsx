@@ -18,13 +18,14 @@ function App() {
     "Done",
   ]);
   const [cards, setCards] = useState<CardProps[]>([]);
+  const [projectCode, setProjectCode] = useState("ID");
 
   const addCard = (title: string, description: string) => {
     const nextID = (cards.length + 1).toString().padStart(4, "0");
     const newCard = {
       title: title,
       description: description,
-      id: `ID-${nextID}`,
+      id: `${projectCode}-${nextID}`,
       status: "Backlog",
     };
     setCards([...cards, newCard]);
@@ -41,7 +42,11 @@ function App() {
 
   return (
     <>
-      <Header cards={cards} setCards={setCards}></Header>
+      <Header
+        cards={cards}
+        addCard={addCard}
+        setProjectCode={setProjectCode}
+      ></Header>
       <div className="container-fluid">
         <div className="row justify-content-center">
           {columns.map((columnTitle, index) => (

@@ -10,10 +10,10 @@ interface CardProps {
 interface Props {
   cards: CardProps[];
   handleCloseModal: () => void;
-  setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
+  addCard: (title: string, description: string) => void;
 }
 
-function AddCardModal({ cards, handleCloseModal, setCards }: Props) {
+function AddCardModal({ cards, handleCloseModal, addCard }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
@@ -21,16 +21,7 @@ function AddCardModal({ cards, handleCloseModal, setCards }: Props) {
 
   const handleCreateCard = () => {
     if (title != "") {
-      setCards([
-        ...cards,
-        {
-          title: title,
-          description: description,
-          id: `ID-${nextID}`,
-          status: "Backlog",
-        },
-      ]);
-
+      addCard(title, description);
       handleCloseModal();
     } else {
       setShowEmptyTitleError(true);

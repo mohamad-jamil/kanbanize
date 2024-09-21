@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-interface Props {}
+interface Props {
+  setProjectCode: React.Dispatch<React.SetStateAction<string>>;
+}
 
-function ProjectIdentifier() {
+function ProjectIdentifier({ setProjectCode }: Props) {
   const [projectID, setProjectID] = useState("ID");
   const [isInputDisabled, setIsInputDisabled] = useState(true);
 
@@ -13,6 +15,7 @@ function ProjectIdentifier() {
 
   const onButtonClick = () => {
     setIsInputDisabled(!isInputDisabled);
+    setProjectCode(projectID);
   };
 
   return (

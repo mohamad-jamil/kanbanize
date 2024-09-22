@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-interface Props {
-  setProjectCode: React.Dispatch<React.SetStateAction<string>>;
+interface CardProps {
+  title: string;
+  description: string;
+  id: string;
+  status: string;
 }
 
-function ProjectIdentifier({ setProjectCode }: Props) {
+interface Props {
+  setProjectCode: React.Dispatch<React.SetStateAction<string>>;
+  cards: CardProps[];
+  setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
+}
+
+function ProjectIdentifier({ setProjectCode, cards, setCards }: Props) {
   const [projectID, setProjectID] = useState("ID");
   const [isInputDisabled, setIsInputDisabled] = useState(true);
 
@@ -16,6 +25,17 @@ function ProjectIdentifier({ setProjectCode }: Props) {
   const onButtonClick = () => {
     setIsInputDisabled(!isInputDisabled);
     setProjectCode(projectID);
+
+    if (!isInputDisabled) {
+      setCards(
+        cards.map((card) => {
+          return {
+            ...card,
+            id: `${projectID}-${card.id.slice(-4)}`,
+          };
+        })
+      );
+    }
   };
 
   return (

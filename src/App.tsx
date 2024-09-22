@@ -46,6 +46,7 @@ function App() {
         cards={cards}
         addCard={addCard}
         setProjectCode={setProjectCode}
+        setCards={setCards}
       ></Header>
       <div className="container-fluid">
         <div className="row justify-content-center">

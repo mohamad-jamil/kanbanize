@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Column from "./components/Column";
 
 import { useState } from "react";
+import "./App.css";
 
 interface CardProps {
   title: string;
@@ -48,8 +49,8 @@ function App() {
         setProjectCode={setProjectCode}
         setCards={setCards}
       ></Header>
-      <div className="container-fluid">
-        <div className="row justify-content-center">
+      <div className="container-fluid full-height-85">
+        <div className="row h-100 justify-content-center">
           {columns.map((columnTitle, index) => (
             <div
               key={index}

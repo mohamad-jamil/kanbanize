@@ -13,11 +13,18 @@ interface CardProps {
 interface Props {
   cards: CardProps[];
   addCard: (title: string, description: string) => void;
+  projectCode: string;
   setProjectCode: React.Dispatch<React.SetStateAction<string>>;
   setCards: React.Dispatch<React.SetStateAction<CardProps[]>>;
 }
 
-function Header({ cards, addCard, setProjectCode, setCards }: Props) {
+function Header({
+  cards,
+  addCard,
+  projectCode,
+  setProjectCode,
+  setCards,
+}: Props) {
   const headerText = "Kanbanize";
   const [showModal, setShowModal] = useState(false);
 
@@ -42,6 +49,7 @@ function Header({ cards, addCard, setProjectCode, setCards }: Props) {
           cards={cards}
           addCard={addCard}
           handleCloseModal={closeModal}
+          projectCode={projectCode}
         ></AddCardModal>
       )}
     </div>

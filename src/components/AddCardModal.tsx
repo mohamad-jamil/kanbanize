@@ -11,9 +11,15 @@ interface Props {
   cards: CardProps[];
   handleCloseModal: () => void;
   addCard: (title: string, description: string) => void;
+  projectCode: string;
 }
 
-function AddCardModal({ cards, handleCloseModal, addCard }: Props) {
+function AddCardModal({
+  cards,
+  handleCloseModal,
+  addCard,
+  projectCode,
+}: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
@@ -63,11 +69,11 @@ function AddCardModal({ cards, handleCloseModal, addCard }: Props) {
           </div>
           <div className="modal-body bg-white text-dark">
             <div className="mb-3">
-              <label className="form-label">ID</label>
+              <label className="form-label">Card ID</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder={`ID-${nextID}`}
+                placeholder={`${projectCode}-${nextID}`}
                 disabled
               />
             </div>

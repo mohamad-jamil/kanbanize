@@ -69,6 +69,7 @@ function App() {
       <Header
         cards={cards}
         addCard={addCard}
+        projectCode={projectCode}
         setProjectCode={setProjectCode}
         setCards={setCards}
       ></Header>

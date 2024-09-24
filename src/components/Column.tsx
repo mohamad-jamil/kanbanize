@@ -9,10 +9,11 @@ interface Props {
     status: string;
   }[];
   columnTitle: string;
+  onDeleteCard: (id: string) => void;
   onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
-function Column({ cards, columnTitle, onUpdateCard }: Props) {
+function Column({ cards, columnTitle, onDeleteCard, onUpdateCard }: Props) {
   return (
     <div>
       <h3 className="text-center">{columnTitle}</h3>
@@ -27,6 +28,7 @@ function Column({ cards, columnTitle, onUpdateCard }: Props) {
                 text={item.description}
                 id={item.id}
                 status={item.status}
+                onDeleteCard={onDeleteCard}
                 onUpdateCard={onUpdateCard}
               ></Card>
             </li>

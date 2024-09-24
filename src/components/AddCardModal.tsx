@@ -23,7 +23,31 @@ function AddCardModal({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
-  let nextID = (cards.length + 1).toString().padStart(4, "0");
+  const maxID = () => {
+    let maxID = cards.length
+      ? parseInt(
+          cards
+            .reduce((maxItem, currentItem) => {
+              const maxIdNum = parseInt(
+                maxItem.id.replace(`${projectCode}-`, ""),
+                10
+              );
+              const currentIdNum = parseInt(
+                currentItem.id.replace(`${projectCode}-`, ""),
+                10
+              );
+
+              return currentIdNum > maxIdNum ? currentItem : maxItem;
+            })
+            .id.replace(`${projectCode}-`, ""),
+          10
+        )
+      : 0;
+
+    return maxID;
+  };
+
+  const nextID = (maxID() + 1).toString().padStart(4, "0");
 
   const handleCreateCard = () => {
     if (title != "") {

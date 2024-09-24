@@ -50,7 +50,7 @@ function Card({ title, text, id, status, onDeleteCard, onUpdateCard }: Props) {
               onUpdateCard={onUpdateCard}
             ></EditCardModal>
           )}
-          <a className="btn btn-danger" onClick={toggleDeleteModal}>
+          <a className="btn btn-danger ms-2" onClick={toggleDeleteModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

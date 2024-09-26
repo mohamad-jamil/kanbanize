@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Card from "./Card";
 
 interface Props {
+  columns: string[];
   cards: {
     title: string;
     description: string;
@@ -13,7 +14,13 @@ interface Props {
   onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
-function Column({ cards, columnTitle, onDeleteCard, onUpdateCard }: Props) {
+function Column({
+  columns,
+  cards,
+  columnTitle,
+  onDeleteCard,
+  onUpdateCard,
+}: Props) {
   return (
     <div>
       <h3 className="text-center">{columnTitle}</h3>
@@ -24,6 +31,7 @@ function Column({ cards, columnTitle, onDeleteCard, onUpdateCard }: Props) {
           .map((item, index) => (
             <li key={index} className="list-group-item">
               <Card
+                columns={columns}
                 title={item.title}
                 text={item.description}
                 id={item.id}

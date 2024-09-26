@@ -87,6 +87,7 @@ function App() {
               className="col col-2 mx-5 mt-4 bg-light bg-gradient"
             >
               <Column
+                columns={columns}
                 cards={cards}
                 columnTitle={columnTitle}
                 onDeleteCard={deleteCard}

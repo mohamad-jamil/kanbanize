@@ -3,6 +3,7 @@ import EditCardModal from "./EditCardModal";
 import DeleteCardModal from "./DeleteCardModal";
 
 interface Props {
+  columns: string[];
   title: string;
   text: string;
   id: string;
@@ -11,7 +12,15 @@ interface Props {
   onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
-function Card({ title, text, id, status, onDeleteCard, onUpdateCard }: Props) {
+function Card({
+  columns,
+  title,
+  text,
+  id,
+  status,
+  onDeleteCard,
+  onUpdateCard,
+}: Props) {
   const [showModal, setShowModal] = useState(false);
   const showEditModal = () => setShowModal(true);
   const hideEditModal = () => setShowModal(false);
@@ -43,8 +52,10 @@ function Card({ title, text, id, status, onDeleteCard, onUpdateCard }: Props) {
           </a>
           {showModal && (
             <EditCardModal
+              columns={columns}
               title={title}
               text={text}
+              status={status}
               handleCloseModal={hideEditModal}
               id={id}
               onUpdateCard={onUpdateCard}

@@ -1,17 +1,22 @@
 import React from "react";
 import { useState } from "react";
+import Dropdown from "./Dropdown";
 
 interface Props {
+  columns: string[];
   title: string;
   text: string;
+  status: string;
   handleCloseModal: () => void;
   id: string;
   onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
 }
 
 function EditCardModal({
+  columns,
   title,
   text,
+  status,
   handleCloseModal,
   id,
   onUpdateCard,
@@ -52,6 +57,7 @@ function EditCardModal({
             <h1 className="modal-title fs-5" id="exampleModalLabel">
               {`Edit ${id}`}
             </h1>
+            <Dropdown dropdownItems={columns} selectedItem={status} />
             <button
               type="button"
               className="btn-close"

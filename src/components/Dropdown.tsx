@@ -4,9 +4,10 @@ import { MouseEvent } from "react";
 interface Props {
   dropdownItems: string[];
   selectedItem: string;
+  handleStatusChange: (status: string) => void;
 }
 
-function Dropdown({ dropdownItems, selectedItem }: Props) {
+function Dropdown({ dropdownItems, selectedItem, handleStatusChange }: Props) {
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [currentItem, setCurrentItem] = useState(selectedItem);
 
@@ -17,6 +18,7 @@ function Dropdown({ dropdownItems, selectedItem }: Props) {
   const handleChangeStatus = (e: MouseEvent, item: string) => {
     toggleDropdownExpanded();
     setCurrentItem(item);
+    handleStatusChange(item);
   };
 
   return (

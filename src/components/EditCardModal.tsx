@@ -9,7 +9,12 @@ interface Props {
   status: string;
   handleCloseModal: () => void;
   id: string;
-  onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
+  onUpdateCard: (
+    id: string,
+    newTitle: string,
+    newDescription: string,
+    newStatus: string
+  ) => void;
 }
 
 function EditCardModal({
@@ -23,11 +28,12 @@ function EditCardModal({
 }: Props) {
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(text);
+  const [newStatus, setNewStatus] = useState(status);
   const [showEmptyTitleError, setShowEmptyTitleError] = useState(false);
 
   const handleEditCard = () => {
     if (newTitle != "") {
-      onUpdateCard(id, newTitle, newDescription);
+      onUpdateCard(id, newTitle, newDescription, newStatus);
       handleCloseModal();
     }
   };
@@ -41,6 +47,10 @@ function EditCardModal({
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setNewDescription(e.target.value);
+  };
+
+  const handleStatusChange = (status: string) => {
+    setNewStatus(status);
   };
 
   return (
@@ -57,7 +67,11 @@ function EditCardModal({
             <h1 className="modal-title fs-5" id="exampleModalLabel">
               {`Edit ${id}`}
             </h1>
-            <Dropdown dropdownItems={columns} selectedItem={status} />
+            <Dropdown
+              dropdownItems={columns}
+              selectedItem={status}
+              handleStatusChange={handleStatusChange}
+            />
             <button
               type="button"
               className="btn-close"

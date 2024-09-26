@@ -56,10 +56,20 @@ function App() {
     setCards([...cards, newCard]);
   };
 
-  const updateCard = (id: string, newTitle: string, newDescription: string) => {
+  const updateCard = (
+    id: string,
+    newTitle: string,
+    newDescription: string,
+    newStatus: string
+  ) => {
     const updatedCards = cards.map((card) =>
       card.id === id
-        ? { ...card, title: newTitle, description: newDescription }
+        ? {
+            ...card,
+            title: newTitle,
+            description: newDescription,
+            status: newStatus,
+          }
         : card
     );
     setCards(updatedCards);

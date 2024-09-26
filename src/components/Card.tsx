@@ -9,7 +9,12 @@ interface Props {
   id: string;
   status: string;
   onDeleteCard: (id: string) => void;
-  onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
+  onUpdateCard: (
+    id: string,
+    newTitle: string,
+    newDescription: string,
+    newStatus: string
+  ) => void;
 }
 
 function Card({

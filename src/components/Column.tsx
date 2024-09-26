@@ -11,7 +11,12 @@ interface Props {
   }[];
   columnTitle: string;
   onDeleteCard: (id: string) => void;
-  onUpdateCard: (id: string, newTitle: string, newDescription: string) => void;
+  onUpdateCard: (
+    id: string,
+    newTitle: string,
+    newDescription: string,
+    newStatus: string
+  ) => void;
 }
 
 function Column({

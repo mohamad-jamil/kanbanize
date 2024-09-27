@@ -72,15 +72,13 @@ function EditCardModal({
               selectedItem={status}
               handleStatusChange={handleStatusChange}
             />
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={handleCloseModal}
-            ></button>
           </div>
           <div className="modal-body bg-white text-dark">
+            {showEmptyTitleError && (
+              <div className="alert alert-danger" role="alert">
+                <b>Error!</b> "Title" field must be populated.
+              </div>
+            )}
             <div className="mb-3">
               <label className="form-label">Title</label>
               <input
@@ -102,7 +100,7 @@ function EditCardModal({
               ></textarea>
             </div>
           </div>
-          <div className="modal-footer d-flex justify-content-between">
+          <div className="modal-footer d-flex">
             <button
               type="button"
               className="btn btn-primary"
@@ -110,11 +108,13 @@ function EditCardModal({
             >
               Save changes
             </button>
-            {showEmptyTitleError && (
-              <div className="alert alert-danger" role="alert">
-                <b>Error!</b> "Title" field must be populated.
-              </div>
-            )}
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleCloseModal}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>

@@ -1,4 +1,8 @@
 import { Analytics } from "@vercel/analytics/react";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import Card from "./Card";
 
 interface Props {
@@ -30,7 +34,7 @@ function Column({
     <div>
       <h3 className="text-center">{columnTitle}</h3>
       <hr />
-      <div>
+      <SortableContext items={cards} strategy={verticalListSortingStrategy}>
         {cards
           .filter((card) => card.status === columnTitle)
           .map((item, index) => (
@@ -46,7 +50,7 @@ function Column({
               ></Card>
             </li>
           ))}
-      </div>
+      </SortableContext>
       <Analytics />
     </div>
   );

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import EditCardModal from "./EditCardModal";
 import DeleteCardModal from "./DeleteCardModal";
 
@@ -33,8 +35,21 @@ function Card({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const toggleDeleteModal = () => setShowDeleteModal(!showDeleteModal);
 
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
+  const style = {
+    transition,
+    transform: CSS.Transform.toString(transform),
+  };
+
   return (
-    <div className="container d-flex justify-content-center">
+    <div
+      ref={setNodeRef}
+      {...attributes}
+      {...listeners}
+      style={style}
+      className="container d-flex justify-content-center"
+    >
       <div className="card text-bg-dark mb-3" style={{ width: "18rem" }}>
         <div className="card-header d-flex justify-content-between align-items-center">
           {id}

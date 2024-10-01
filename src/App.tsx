@@ -2,7 +2,9 @@ import Header from "./components/Header";
 import Column from "./components/Column";
 
 import { useState } from "react";
+import { closestCorners, DndContext, DragEndEvent } from "@dnd-kit/core";
 import "./App.css";
+import { arrayMove } from "@dnd-kit/sortable";
 
 interface CardProps {
   title: string;
@@ -80,6 +82,22 @@ function App() {
     setCards(updatedCards);
   };
 
+  const getTaskPosition = (id: string) =>
+    cards.findIndex((card) => card.id === id);
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (!over || active.id === over.id) return;
+
+    setCards((cards) => {
+      const originalPos = getTaskPosition(String(active.id));
+      const newPos = getTaskPosition(String(over.id));
+
+      return arrayMove(cards, originalPos, newPos);
+    });
+  };
+
   return (
     <>
       <Header
@@ -96,13 +114,18 @@ function App() {
               key={index}
               className="col col-2 mx-5 mt-4 bg-light bg-gradient"
             >
-              <Column
-                columns={columns}
-                cards={cards}
-                columnTitle={columnTitle}
-                onDeleteCard={deleteCard}
-                onUpdateCard={updateCard}
-              ></Column>
+              <DndContext
+                onDragEnd={handleDragEnd}
+                collisionDetection={closestCorners}
+              >
+                <Column
+                  columns={columns}
+                  cards={cards}
+                  columnTitle={columnTitle}
+                  onDeleteCard={deleteCard}
+                  onUpdateCard={updateCard}
+                ></Column>
+              </DndContext>
             </div>
           ))}
         </div>

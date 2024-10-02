@@ -4,7 +4,11 @@ import Column from "./components/Column/Column";
 import { useState } from "react";
 import { closestCorners, DndContext, DragEndEvent } from "@dnd-kit/core";
 import "./App.css";
-import { arrayMove } from "@dnd-kit/sortable";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 interface CardProps {
   title: string;
@@ -85,17 +89,53 @@ function App() {
   const getTaskPosition = (id: string) =>
     cards.findIndex((card) => card.id === id);
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragOver = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (!over || active.id === over.id) return;
 
-    setCards((cards) => {
-      const originalPos = getTaskPosition(String(active.id));
-      const newPos = getTaskPosition(String(over.id));
+    const activeCard = cards.find((card) => card.id === String(active.id));
+    const overCard = cards.find((card) => card.id === String(over.id));
 
-      return arrayMove(cards, originalPos, newPos);
-    });
+    if (!activeCard || !overCard) return;
+
+    // Determine if the card is moving to a different column
+    const newColumn = overCard ? overCard.status : over.id; // Get new column from the dropped over card or placeholder
+    if (activeCard.status !== newColumn) {
+      // Move the card to the new column
+      setCards((cards) =>
+        cards.map((card) =>
+          card.id === active.id ? { ...card, status: newColumn } : card
+        )
+      );
+    } else {
+      // Reorder within the same column
+      const filteredCards = cards.filter(
+        (card) => card.status === activeCard.status
+      );
+      const originalPos = filteredCards.findIndex(
+        (card) => card.id === active.id
+      );
+      const newPos = filteredCards.findIndex((card) => card.id === over.id);
+
+      setCards((cards) => {
+        const columnCards = cards.filter(
+          (card) => card.status === activeCard.status
+        );
+        const otherCards = cards.filter(
+          (card) => card.status !== activeCard.status
+        );
+        const reorderedCards = arrayMove(columnCards, originalPos, newPos);
+        return [...otherCards, ...reorderedCards];
+      });
+    }
+
+    // setCards((cards) => {
+    //   const originalPos = getTaskPosition(String(active.id));
+    //   const newPos = getTaskPosition(String(over.id));
+
+    //   return arrayMove(cards, originalPos, newPos);
+    // });
   };
 
   return (
@@ -111,7 +151,7 @@ function App() {
       </div>
       <div className="container-fluid full-height main-page">
         <DndContext
-          onDragOver={handleDragEnd}
+          onDragOver={handleDragOver}
           collisionDetection={closestCorners}
         >
           <div className="row h-100 justify-content-center">

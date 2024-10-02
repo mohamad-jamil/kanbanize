@@ -52,8 +52,8 @@ function Card({
       style={style}
       className="container d-flex justify-content-center"
     >
-      <div className="card text-bg-dark mb-3" style={{ width: "18rem" }}>
-        <div className="card-header d-flex justify-content-between align-items-center">
+      <div className="card bg-custom mb-3" style={{ width: "18rem" }}>
+        <div className="card-header card-item d-flex justify-content-between align-items-center">
           {id}
           <svg
             xmlns="http://www.w3.org/2000/svg"

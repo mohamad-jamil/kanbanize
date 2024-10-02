@@ -94,48 +94,12 @@ function App() {
 
     if (!over || active.id === over.id) return;
 
-    const activeCard = cards.find((card) => card.id === String(active.id));
-    const overCard = cards.find((card) => card.id === String(over.id));
+    setCards((cards) => {
+      const originalPos = getTaskPosition(String(active.id));
+      const newPos = getTaskPosition(String(over.id));
 
-    if (!activeCard || !overCard) return;
-
-    // Determine if the card is moving to a different column
-    const newColumn = overCard ? overCard.status : over.id; // Get new column from the dropped over card or placeholder
-    if (activeCard.status !== newColumn) {
-      // Move the card to the new column
-      setCards((cards) =>
-        cards.map((card) =>
-          card.id === active.id ? { ...card, status: newColumn } : card
-        )
-      );
-    } else {
-      // Reorder within the same column
-      const filteredCards = cards.filter(
-        (card) => card.status === activeCard.status
-      );
-      const originalPos = filteredCards.findIndex(
-        (card) => card.id === active.id
-      );
-      const newPos = filteredCards.findIndex((card) => card.id === over.id);
-
-      setCards((cards) => {
-        const columnCards = cards.filter(
-          (card) => card.status === activeCard.status
-        );
-        const otherCards = cards.filter(
-          (card) => card.status !== activeCard.status
-        );
-        const reorderedCards = arrayMove(columnCards, originalPos, newPos);
-        return [...otherCards, ...reorderedCards];
-      });
-    }
-
-    // setCards((cards) => {
-    //   const originalPos = getTaskPosition(String(active.id));
-    //   const newPos = getTaskPosition(String(over.id));
-
-    //   return arrayMove(cards, originalPos, newPos);
-    // });
+      return arrayMove(cards, originalPos, newPos);
+    });
   };
 
   return (

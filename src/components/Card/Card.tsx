@@ -69,7 +69,7 @@ function Card({
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{text}</p>
-          <a className="btn btn-primary" onClick={showEditModal}>
+          <a className="btn edit-btn" onClick={showEditModal}>
             Edit
           </a>
           {showModal && (
@@ -83,7 +83,7 @@ function Card({
               onUpdateCard={onUpdateCard}
             ></EditCardModal>
           )}
-          <a className="btn btn-danger ms-2" onClick={toggleDeleteModal}>
+          <a className="btn del-btn ms-2" onClick={toggleDeleteModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

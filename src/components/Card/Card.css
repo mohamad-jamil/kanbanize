@@ -3,3 +3,13 @@
     background-color: #59021b!important;
     color: #ff7597!important;
 }
+
+.edit-btn {
+    border: 1px solid black!important;
+    background-color: #e73262!important;
+}
+
+.del-btn {
+    border: 1px solid black!important;
+    background-color: #b20a37!important;
+}

@@ -110,13 +110,13 @@ function App() {
         ></Header>
       </div>
       <div className="container-fluid full-height main-page">
-        <div className="row h-100 justify-content-center">
-          {columns.map((columnTitle, index) => (
-            <div key={index} className="col col-2 mx-3 mt-4 column">
-              <DndContext
-                onDragEnd={handleDragEnd}
-                collisionDetection={closestCorners}
-              >
+        <DndContext
+          onDragOver={handleDragEnd}
+          collisionDetection={closestCorners}
+        >
+          <div className="row h-100 justify-content-center">
+            {columns.map((columnTitle, index) => (
+              <div key={index} className="col col-2 mx-3 mt-4 column">
                 <Column
                   columns={columns}
                   cards={cards}
@@ -124,10 +124,10 @@ function App() {
                   onDeleteCard={deleteCard}
                   onUpdateCard={updateCard}
                 ></Column>
-              </DndContext>
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        </DndContext>
       </div>
     </>
   );

@@ -31,26 +31,29 @@ function Column({
   onDeleteCard,
   onUpdateCard,
 }: Props) {
+  const filteredCards = cards.filter((card) => card.status === columnTitle);
+
   return (
     <>
       <h3 className="text-center column-heading">{columnTitle}</h3>
       <hr className="hr" />
-      <SortableContext items={cards} strategy={verticalListSortingStrategy}>
-        {cards
-          .filter((card) => card.status === columnTitle)
-          .map((item, index) => (
-            <li key={index} className="list-group-item">
-              <Card
-                columns={columns}
-                title={item.title}
-                text={item.description}
-                id={item.id}
-                status={item.status}
-                onDeleteCard={onDeleteCard}
-                onUpdateCard={onUpdateCard}
-              ></Card>
-            </li>
-          ))}
+      <SortableContext
+        items={filteredCards}
+        strategy={verticalListSortingStrategy}
+      >
+        {filteredCards.map((item, index) => (
+          <li key={index} className="list-group-item">
+            <Card
+              columns={columns}
+              title={item.title}
+              text={item.description}
+              id={item.id}
+              status={item.status}
+              onDeleteCard={onDeleteCard}
+              onUpdateCard={onUpdateCard}
+            ></Card>
+          </li>
+        ))}
       </SortableContext>
       <Analytics />
     </>

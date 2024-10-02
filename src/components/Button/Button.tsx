@@ -1,4 +1,5 @@
-import React, { ReactNode, useState } from "react";
+import { ReactNode } from "react";
+import "./Button.css";
 
 interface Props {
   children: ReactNode;
@@ -10,7 +11,7 @@ function Button({ children, handleButtonClick }: Props) {
     <>
       <button
         type="button"
-        className="btn btn-outline-light btn-sm"
+        className="btn btn-outline-dark btn-sm button"
         onClick={handleButtonClick}
       >
         {children}

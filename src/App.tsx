@@ -1,5 +1,5 @@
-import Header from "./components/Header";
-import Column from "./components/Column";
+import Header from "./components/Header/Header";
+import Column from "./components/Column/Column";
 
 import { useState } from "react";
 import { closestCorners, DndContext, DragEndEvent } from "@dnd-kit/core";
@@ -100,20 +100,19 @@ function App() {
 
   return (
     <>
-      <Header
-        cards={cards}
-        addCard={addCard}
-        projectCode={projectCode}
-        setProjectCode={setProjectCode}
-        setCards={setCards}
-      ></Header>
-      <div className="container-fluid full-height-85">
+      <div className="header">
+        <Header
+          cards={cards}
+          addCard={addCard}
+          projectCode={projectCode}
+          setProjectCode={setProjectCode}
+          setCards={setCards}
+        ></Header>
+      </div>
+      <div className="container-fluid full-height main-page">
         <div className="row h-100 justify-content-center">
           {columns.map((columnTitle, index) => (
-            <div
-              key={index}
-              className="col col-2 mx-5 mt-4 bg-light bg-gradient"
-            >
+            <div key={index} className="col col-2 mx-3 mt-4 column">
               <DndContext
                 onDragEnd={handleDragEnd}
                 collisionDetection={closestCorners}

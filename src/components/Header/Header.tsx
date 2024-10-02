@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Button from "./Button";
-import AddCardModal from "./AddCardModal";
-import ProjectIdentifier from "./ProjectIdentifier";
+import Button from "../Button/Button";
+import AddCardModal from "../AddCardModal/AddCardModal";
+import ProjectIdentifier from "../ProjectIdentifier/ProjectIdentifier";
 
 interface CardProps {
   title: string;
@@ -32,7 +32,7 @@ function Header({
   const closeModal = () => setShowModal(false);
 
   return (
-    <div className="text-bg-primary d-flex align-items-center">
+    <div className="d-flex align-items-center">
       <h1 className="p-2 ps-4">{headerText}</h1>
       <div className="d-flex align-items-center position-absolute end-0 me-5">
         <Button handleButtonClick={openModal}>+ Add Card</Button>

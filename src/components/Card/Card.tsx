@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import EditCardModal from "./EditCardModal";
-import DeleteCardModal from "./DeleteCardModal";
+import "./Card.css";
+
+import EditCardModal from "../EditCardModal/EditCardModal";
+import DeleteCardModal from "../DeleteCardModal/DeleteCardModal";
 
 interface Props {
   columns: string[];

@@ -3,7 +3,8 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import Card from "./Card";
+import Card from "../Card/Card";
+import "./Column.css";
 
 interface Props {
   columns: string[];
@@ -31,9 +32,9 @@ function Column({
   onUpdateCard,
 }: Props) {
   return (
-    <div>
-      <h3 className="text-center">{columnTitle}</h3>
-      <hr />
+    <>
+      <h3 className="text-center column-heading">{columnTitle}</h3>
+      <hr className="hr" />
       <SortableContext items={cards} strategy={verticalListSortingStrategy}>
         {cards
           .filter((card) => card.status === columnTitle)
@@ -52,7 +53,7 @@ function Column({
           ))}
       </SortableContext>
       <Analytics />
-    </div>
+    </>
   );
 }
 

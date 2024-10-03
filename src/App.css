@@ -1,9 +1,9 @@
 .header {
     background-color: #ff7597;
+    border-bottom: 2px solid black!important;
 }
 
 .main-page {
-    height: 100vh;
     background-color: #362b2e;
 }
 
@@ -12,4 +12,5 @@
     margin-bottom: 5%;
     background-color: #24181c;
     border: 2px solid black;
+    min-height: 85vh;
 }

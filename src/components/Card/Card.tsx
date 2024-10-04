@@ -48,12 +48,14 @@ function Card({
     <div
       ref={setNodeRef}
       {...attributes}
-      {...listeners}
       style={style}
       className="container d-flex justify-content-center"
     >
       <div className="card bg-custom mb-3" style={{ width: "18rem" }}>
-        <div className="card-header card-item d-flex justify-content-between align-items-center">
+        <div
+          className="card-header card-item d-flex justify-content-between align-items-center"
+          {...listeners}
+        >
           {id}
           <svg
             xmlns="http://www.w3.org/2000/svg"
